@@ -1,0 +1,28 @@
+{
+  "name": "kateclient2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "HTTPS=true SSL_CRT_FILE=aps.kst-energo.ru.pem SSL_KEY_FILE=aps.kst-energo.ru-key.pem react-scripts start"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "sass": "^1.64.2"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.1",
+    "chart.js": "^4.4.0",
+    "http-server": "^14.1.1",
+    "jquery": "^3.7.1",
+    "jszip": "^3.10.1"
+  }
+}

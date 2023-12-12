@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Экран | КСТ Энерго Инжиниринг</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="..\node_modules\bootstrap\dist\css\bootstrap.min.css">
+	<script src="..\node_modules\bootstrap\dist\js\bootstrap.bundle.min.js"></script>
+	<script src="..\node_modules\jquery\dist\jquery.min.js"></script>
+	
+	<link rel="stylesheet" href="./css/main.css" media="all">
+
+</head>
+
+<body>
+	
+	<!-- Вывод асинхронных данных -->
+	<div class="screenRental">
+		<div class="wrapper">
+			<div id="content" class="tableData asyncContentUpdate d-flex align-items-center">
+			</div>
+		</div>
+		<script>
+
+			function show() {
+			  $.ajax({
+				url: "output.php",
+				cache: false,
+				success: function (html) {
+				  $("#content").html(html);
+				}
+			  });
+			}
+	  
+			$(document).ready(function () {
+			  show();
+			  setInterval('show()', 1000);
+			});
+	  
+			var scrollStep = 55; //шаг прокрутки px
+			var currentScrollTop = 0; //текущая позиция прокрутки вертикальная 
+			var scrollingDown = true; //флаг направление прокрутки true(вниз)
+			function scrollPage() {
+			  //в зависимости от значения scrollingDown увеличивает или уменьшает currentScrollTop на значение scrollStep
+			  if (scrollingDown) {
+				currentScrollTop += scrollStep;
+			  } else {
+				currentScrollTop -= scrollStep;
+			  }
+			  //анимация прокрутки до заданной позиции currentScrollTop за 500 млс
+			  $('html, body').animate({ scrollTop: currentScrollTop }, 500);
+			  //проверка достигнут ли конец страницы и замена значения scrollingDown на false(вверх).
+			  if (scrollingDown && currentScrollTop >= $(document).height() - $(window).height()) { // $(document).height() высота всего документа, $(window).height() высота видимой области окна браузера
+				scrollingDown = false;
+			  } else if (!scrollingDown && currentScrollTop <= 0) {
+				scrollingDown = true;
+			  }
+			}
+			// интервал функции каждые 2 секунды
+			setInterval(scrollPage, 4200);
+		  </script>
+	</div>
+	<!-- Конец вывода асинхронных данных -->
+</body>
+
+</html>
